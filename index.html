@@ -12,8 +12,31 @@
 
 </head>
 <body>
-
-
+    <script>
+        $(document).ready(function() {
+            $('#myForm').submit(function(e) {
+                e.preventDefault(); // Prevent form submission
+                // Collect form data
+                var formData = new FormData(this);
+                // Send AJAX request
+                $.ajax({
+                    url: 'process.php',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        // Handle success response
+                        $('#myTable tbody').append(response);
+                        $('#myForm')[0].reset(); // Reset the form
+                    }
+                });
+            });
+        });
+        function deleteRow(button) {
+            $(button).closest('tr').remove();
+        }
+    </script>
 
     <div class="col-sm-5 d-flex align-content-stretch p-5">
         <div class="card card-border w-100">
