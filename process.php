@@ -1,5 +1,10 @@
 <?php
+function generateUniqueId(): string
+{
+    return rand(100, 999);
+}
 
+$id = generateUniqueId();
 $name = $_POST['name'];
 $address = $_POST['address'];
 $gender = $_POST['gender'];
@@ -15,6 +20,7 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 
 // Process form data and prepare table row HTML
 $rowHTML = '<tr>';
+$rowHTML .= '<td>' . $id . '</td>';
 $rowHTML .= '<td>' . $name . '</td>';
 $rowHTML .= '<td><img src="' . $imagePath . '" alt="Uploaded Image" class="img-fluid" height="50px" width="50px"></td>';
 $rowHTML .= '<td>' . $address . '</td>';
